@@ -1,0 +1,79 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 50;
+}
+
+.overlayContent {
+    width: 40%;
+}
+
+.images {
+    position: relative;
+    height: 550px;
+}
+
+.imgHolder {
+    position: relative;
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    z-index: 2;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.imgHolder img {
+    position: absolute;
+    top: 0;
+    left: 110%;
+}
+
+.text {
+    position: relative;
+    margin: 1em 0;
+    clip-path: polygon(0, 0, 100%, 0, 100%, 100%, 0, 100%);
+}
+
+.counter,
+.logo p {
+    font-size: 200px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Ribes", sans-serif;
+    color: var(--text-primary);
+}
+
+.counter p {
+    line-height: 100%;
+}
+
+.counter p span,
+.logo p span {
+    position: relative;
+    z-index: -2;
+}
+
+.logo {
+    position: absolute;
+    left: 50%;
+    top: 0%;
+    transform: translate(-50%);
+}
+
+.logo p {
+    opacity: 0;
+    line-height: 100%;
+}
+
+.logo p span {
+    position: relative;
+    top: 200px;
+}

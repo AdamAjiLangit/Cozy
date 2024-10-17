@@ -1,0 +1,65 @@
+.logo{
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    text-transform: uppercase;
+    font-family: 'Ribes', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--text-primary);
+
+}
+.pageContainer{
+    display: flex;
+    padding-left: 100px;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+    width: 100%;
+
+}
+.pageNotFound{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+    width: 70%;
+
+}
+.pageNotFound span{
+    font-size: 250px;
+    line-height: 89%;
+    color: var(--text-primary);
+    font-weight: bold;
+    overflow: hidden;
+    font-family: 'RibesBold', sans-serif;
+}
+.span404{
+    display: inline-block;
+    width: max-content;
+    font-size: 200px;
+    text-align: center;
+    padding: 5px 50px;
+    border-radius: 300px;
+    border: 2px solid #b68c60;
+}
+.homeBtn{
+    position: absolute;
+    bottom: 100px;
+    right: 100px;
+
+}
+.homeBtn button{
+    padding: 140px 75px;
+    border-radius: 50%;
+    font-size: 20px;
+    font-family: 'Ribes', sans-serif;
+    border: none;
+    cursor: pointer;
+    color: white;
+    background-color: #b68c60;
+    transition: transform .6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+.homeBtn button:hover{
+    transform: scale(1.2);
+}
