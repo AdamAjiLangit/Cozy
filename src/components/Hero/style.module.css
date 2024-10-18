@@ -16,6 +16,18 @@
     width: 40%;
 }
 
+.ball {
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--bg-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
 .hero {
     width: 100vw;
     height: 100vh;
@@ -24,7 +36,7 @@
 }
 
 .hero img {
-    transform: scale(10);
+    transform: scale(2);
     filter: blur(6px);
     filter: brightness(0.5);
 }

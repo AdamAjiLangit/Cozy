@@ -17,7 +17,7 @@ export default function Custom404() {
                 opacity: 0,
             },
             {
-                y: 0,
+                y: 40,
                 skewY: 5,
                 opacity: 1,
                 duration: .8,
@@ -35,7 +35,6 @@ export default function Custom404() {
             {
                 scale: 1,
                 duration: .5,
-                skewY: 5,
                 stagger: {
                     amount: .6
                 }
@@ -46,9 +45,9 @@ export default function Custom404() {
     return (
         <>
             <div className='bg-primary overflow-hidden'>
-                <div className={styles.logo} id='logo'>
+                {/* <div className={styles.logo} id='logo'>
                     Cozy
-                </div>
+                </div> */}
                 <div className={styles.pageContainer}>
                     <div className={styles.pageNotFound} id='page-not-found'>
                         <span>PAGE</span>

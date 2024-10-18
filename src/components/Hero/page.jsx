@@ -13,10 +13,11 @@ import { splitTextIntoSpans } from "@/lib/splitTextIntoSpan";
 import { AnimateButton } from "@/lib/animateButton";
 import AnimatedButton from "../ui/animatedButton";
 
-export default function Hero() {
+export default function Hero({ isPreloaderComplete }) {
     const { data, isLoading, error } =
         useFetch('https://api.escuelajs.co/api/v1/products/?categoryId=3');
     const discount = 0.09;
+    const buttonRef = useRef(null);
     const heroCopyRef = useRef(null);
 
     const getDiscountPrice = (price) => {
@@ -24,43 +25,75 @@ export default function Hero() {
     }
 
     useEffect(() => {
-        splitTextIntoSpans('#hero-copy h1');
-        splitTextIntoSpans('#hero-text p');
-        gsap.to('.hero img', {
-            scale: 1,
-            ease: 'power3.inOut',
-            duration: 2,
-            delay: 5.5,
-        });
+        gsap.set("#ball", { xPercent: -50, yPercent: -50 });
 
-        gsap.to('#hero-copy h1 span', {
-            top: '0',
-            stagger: 0.1,
-            ease: 'power3.inOut',
-            duration: 2,
-            delay: 5.9,
-        });
+        let xTo = gsap.quickTo("#ball", "x", { duration: 0, ease: "power3" }),
+            yTo = gsap.quickTo("#ball", "y", { duration: 0, ease: "power3" });
 
-        gsap.to('#hero-text p span', {
-            top: '0',
-            stagger: 0.02,
-            ease: 'power3.inOut',
-            duration: 2,
-            delay: 5.9,
+        window.addEventListener("mousemove", e => {
+            // xTo(e.pageX);
+            // yTo(e.pageY);
+            xTo(e.clientX);
+            yTo(e.clientY);
         });
     }, []);
+
+    useEffect(() => {
+        if (isPreloaderComplete) {
+            splitTextIntoSpans('#hero-copy h1');
+            splitTextIntoSpans('#hero-text p');
+            gsap.to('.hero img', {
+                scale: 1,
+                ease: 'power3.inOut',
+                duration: 2,
+            });
+
+            gsap.to("#hero-copy", {
+                opacity: 1,
+                ease: 'power3.inOut',
+            });
+
+            gsap.to('#hero-copy h1 span', {
+                top: '0',
+                stagger: 0.1,
+                opacity: 1,
+                ease: 'power3.inOut',
+                duration: 2,
+            });
+
+            gsap.to("#hero-text", {
+                opacity: 1,
+                ease: 'power3.inOut',
+            });
+
+            gsap.to('#hero-text p span', {
+                top: '0',
+                opacity: 1,
+                stagger: 0.02,
+                ease: 'power3.inOut',
+                duration: 2,
+            });
+
+            gsap.to(buttonRef.current, {
+                opacity: 1,
+                ease: 'power3.inOut',
+                duration: 2,
+            });
+        }
+    }, [isPreloaderComplete]);
 
     // if (isLoading) return <div className="w-full h-full justify-center items-center">Loading...</div>;
     // if (error) return <div className="w-full h-full justify-center items-center">Error: {error.message}</div>;
 
     return (
         <>
+            <div className={styles.ball} id="ball"></div>
             <div className={styles.container}>
                 <div className={styles.hero}>
                     <img src="/assets/images/furniture.jpg" alt="Images" />
                 </div>
 
-                <div className={styles.heroCopy} id="hero-copy">
+                <div className={`opacity-0 ${styles.heroCopy}`} id="hero-copy">
                     <Label>
                         <h1 ref={heroCopyRef}>Cozy</h1>
                     </Label>
@@ -68,7 +101,7 @@ export default function Hero() {
 
                 <div className={styles.heroSection}>
                     <div className={styles.heroContent}>
-                        <div className={styles.heroText} id="hero-text">
+                        <div className={`opacity-0 ${styles.heroText}`} id="hero-text">
                             <Label>
                                 <p>ADD ELEGANCE AND CHARM TO YOUR</p>
                                 <p>SPACE WITH FURNITURE THAT</p>
@@ -79,7 +112,9 @@ export default function Hero() {
                             <span className={styles.buttonFlair}></span>
                             <span className={styles.buttonLabel}>Explore Collection</span>
                         </a> */}
-                        <AnimatedButton text="Cool" />
+                        <div ref={buttonRef} className="opacity-0">
+                            <AnimatedButton text="Cool" />
+                        </div>
                     </div>
                 </div>
             </div>
