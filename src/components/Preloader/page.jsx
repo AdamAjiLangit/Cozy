@@ -5,17 +5,43 @@ import styles from './style.module.css';
 import { splitTextIntoSpans } from '@/lib/splitTextIntoSpan';
 import gsap from 'gsap';
 
-export default function Preloader() {
+export default function Preloader({ onPreloaderComplete }) {
     const [currentValue, setCurrentValue] = useState(0);
+    const [showPreloader, setShowPreloader] = useState(true);
     const overlayRef = useRef(null);
     const counterRef = useRef(null);
     const logoRef = useRef(null);
 
     useEffect(() => {
-        startLoader();
+        const hasVisited = localStorage.getItem('hasVisited');
+        if (hasVisited) {
+            setShowPreloader(false);
+            onPreloaderComplete();
+        } else {
+            startLoader();
+            localStorage.getItem('hasVisited', true);
+        }
     }, []);
 
-    useEffect(() => {
+    function startLoader() {
+        const interval = 100;
+        const increment = 2;
+
+        const timer = setInterval(() => {
+            setCurrentValue((prevValue) => {
+                const newValue = Math.min(prevValue + increment, 100);
+
+                if (newValue >= 100) {
+                    clearInterval(timer);
+                    animateText();
+                }
+
+                return newValue;
+            });
+        }, interval);
+    }
+
+    function animateText() {
         splitTextIntoSpans('#logo p');
 
         gsap.to("#logo p", {
@@ -27,7 +53,7 @@ export default function Preloader() {
             stagger: 0.1,
             ease: "power4.out",
             duration: 2,
-            delay: 2,
+            delay: 1,
         });
 
         gsap.to("#imgHolder img", {
@@ -35,33 +61,9 @@ export default function Preloader() {
             stagger: -0.1,
             ease: "power4.out",
             duration: 1.5,
-            delay: 5,
+            delay: 4,
         });
 
-    }, []);
-
-    function startLoader() {
-        function updateCounter() {
-            setCurrentValue((prevValue) => {
-                if (prevValue >= 100) {
-                    animateText();
-                    return 100;
-                }
-
-                const increment = Math.floor(Math.random() * 10) + 1;
-                const newValue = Math.min(prevValue + increment, 100);
-
-                const delay = Math.floor(Math.random() * 200) + 100;
-                setTimeout(updateCounter, delay);
-
-                return newValue;
-            });
-        }
-
-        updateCounter();
-    }
-
-    function animateText() {
         gsap.to(counterRef.current.querySelectorAll('span'), {
             top: '400px',
             stagger: 0.1,
@@ -85,17 +87,24 @@ export default function Preloader() {
             delay: 4,
         });
 
-        gsap.to(overlayRef.current,
-            {
-                opacity: 0,
-                ease: 'power4.inOut',
-                duration: 2,
-                delay: 5,
-                onComplete: () => {
-                    overlayRef.current.style.visibility = 'hidden';
-                },
-            });
+        gsap.to(overlayRef.current, {
+            opacity: 0,
+            ease: 'power4.inOut',
+            duration: 2,
+            delay: 5,
+            onComplete: () => {
+                onPreloaderComplete();
+            },
+        });
     }
+
+    useEffect(() => {
+        if (currentValue === 100) {
+            animateText();
+        }
+    }, [currentValue]);
+
+    if (!showPreloader) return null;
 
     return (
         <>
