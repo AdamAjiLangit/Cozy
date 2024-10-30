@@ -7,33 +7,38 @@ import Link from "next/link";
 export default function AnimatedButton() {
     const circleContainerRef = useRef(null);
     const innerRef = useRef(null);
+    const textContainerRef = useRef(null);
     const textRef = useRef(null);
     const tl = useRef(gsap.timeline({ paused: true }));
 
     useEffect(() => {
         const inner = innerRef.current;
+        const text = textRef.current;
+        const innerOffset = inner.offsetWidth - circleContainerRef.current.offsetWidth;
+        const textOffset = text.offsetHeight - textContainerRef.current.offsetHeight;
 
-        tl.current.from(inner, {
-            duration: 0.3,
-            x: -(inner.offsetWidth - circleContainerRef.current.offsetWidth),
-            ease: "power1.out",
-        });
-
-        tl.current.to(inner, {
-            duration: 0.3,
-            x: 0,
-            ease: "power1.out",
-            paused: true,
-        });
+        tl.current
+            .fromTo(
+                inner,
+                { x: -innerOffset },
+                { duration: 0.3, x: 0, ease: "power1.out" },
+                "<"
+            )
+            .fromTo(
+                text,
+                { y: -textOffset },
+                { duration: 0.3, y: 0, ease: "power1.out" },
+                "<"
+            );
 
     }, []);
 
     const handleMouseEnter = () => {
-        tl.current.play(0);
+        tl.current.play();
     };
 
     const handleMouseLeave = () => {
-        tl.current.play(0);
+        tl.current.reverse();
     };
 
     return (
@@ -43,9 +48,14 @@ export default function AnimatedButton() {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            <div className="flex items-center justify-start overflow-hidden">
-                <div className="flex items-center justify-center uppercase text-primary font-ribes text-[1.2vw]">
-                    Explore Collection
+            <div ref={textContainerRef} className="flex h-[30px] flex-col items-center justify-start overflow-hidden">
+                <div ref={textRef} className="flex flex-col items-center">
+                    <div className="flex items-center min-h-[30px] justify-center uppercase text-primary font-ribes text-[3.5vw] md:text-[1.2vw]">
+                        Explore Collection
+                    </div>
+                    <div className="flex items-center min-h-[30px] justify-center uppercase text-primary font-ribes text-[3.5vw] md:text-[1.2vw]">
+                        Explore Collection
+                    </div>
                 </div>
             </div>
             <div
