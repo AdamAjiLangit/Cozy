@@ -21,14 +21,14 @@ const links = [
         src: "/assets/images/furniture.jpg"
     },
     {
-        title: "About Us",
+        title: "About",
         href: "/about",
-        src: "/assets/images/furniture.jpg"
+        src: "/assets/images/sofa.jpg"
     },
     {
         title: "Contact",
         href: "/contact",
-        src: "/assets/images/furniture.jpg"
+        src: "/assets/images/whiteDecor.jpg"
     }
 ]
 

@@ -93,6 +93,7 @@ export default function Preloader({ onPreloaderComplete }) {
             duration: 2,
             delay: 5,
             onComplete: () => {
+                localStorage.setItem('hasVisited', 'true');
                 onPreloaderComplete();
             },
         });

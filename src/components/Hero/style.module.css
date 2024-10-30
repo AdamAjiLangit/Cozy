@@ -180,3 +180,24 @@
     transform: translate(-50%, -50%);
     width: 170%;
 }
+
+@media (max-width: 768px) {
+    .heroContent {
+        top: 40%;
+        left: 40%;
+    }
+
+    .heroCopy {
+        top: 20%;
+    }
+
+    .heroCopy h1 {
+        font-size: 20vw;
+        letter-spacing: 20px;
+    }
+
+    .heroText p {
+        font-size: 3.5vw;
+    }
+
+}
