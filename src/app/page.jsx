@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ReactLenis } from "@studio-freight/react-lenis";
 import Hero from "@/components/Hero/page";
 import Preloader from "@/components/Preloader/page";
+import Product from "@/components/Hero/Product/page";
 
 export default function Home() {
   const [isPreloaderComplete, setIsPreloaderComplete] = useState(false);
@@ -16,6 +17,9 @@ export default function Home() {
       <div className="page-content hero">
         <Hero isPreloaderComplete={isPreloaderComplete} />
       </div>
+      {/* <div className="">
+        <Product />
+      </div> */}
     </ReactLenis>
   );
 }

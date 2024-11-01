@@ -29,23 +29,26 @@
 }
 
 .hero {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    position: relative;
 }
 
 .hero img {
     transform: scale(2);
     filter: blur(6px);
-    filter: brightness(0.5);
+    filter: brightness(0.4);
 }
 
 .heroCopy {
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: flex;
+    padding-top: 4%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
     text-transform: uppercase;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     overflow: hidden;
@@ -66,16 +69,13 @@
 }
 
 .heroContent {
-    position: absolute;
-    top: 75%;
-    left: 17.5%;
     display: flex;
     flex-direction: column;
     gap: 1.5em;
-    transform: translate(-50%, -50%);
     text-transform: uppercase;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     padding: 1rem;
+    margin-left: 7%;
 }
 
 .heroText p {
@@ -182,22 +182,21 @@
 }
 
 @media (max-width: 768px) {
-    .heroContent {
-        top: 40%;
-        left: 40%;
-    }
-
     .heroCopy {
-        top: 20%;
+        padding-top: 15%;
     }
 
     .heroCopy h1 {
-        font-size: 20vw;
-        letter-spacing: 20px;
+        font-size: 37vw;
+        letter-spacing: 0px;
     }
 
     .heroText p {
-        font-size: 3.5vw;
+        font-size: 4vw;
+    }
+
+    .heroContent {
+        margin-left: 0;
     }
 
 }

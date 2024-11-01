@@ -25,7 +25,7 @@ module.exports = {
 					foreground: 'hsl(var(--popover-foreground))'
 				},
 				textPrimary: {
-					DEFAULT: 'hsl(var(--text-primary))',
+					DEFAULT: '#4D3D30',
 					foreground: 'hsl(var(--text-primary-foreground))'
 				},
 				colorAccent: {

@@ -49,11 +49,11 @@ export default function AnimatedButton() {
             onMouseLeave={handleMouseLeave}
         >
             <div ref={textContainerRef} className="flex h-[30px] flex-col items-center justify-start overflow-hidden">
-                <div ref={textRef} className="flex flex-col items-center">
-                    <div className="flex items-center min-h-[30px] justify-center uppercase text-primary font-ribes text-[3.5vw] md:text-[1.2vw]">
+                <div ref={textRef} className="flex flex-col items-center ">
+                    <div className="flex items-center min-h-[30px] justify-center uppercase text-primary font-ribes text-[4vw] md:text-[1.2vw]">
                         Explore Collection
                     </div>
-                    <div className="flex items-center min-h-[30px] justify-center uppercase text-primary font-ribes text-[3.5vw] md:text-[1.2vw]">
+                    <div className="flex items-center min-h-[30px] justify-center uppercase text-primary font-ribes text-[4vw] md:text-[1.2vw]">
                         Explore Collection
                     </div>
                 </div>

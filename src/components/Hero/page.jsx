@@ -24,19 +24,19 @@ export default function Hero({ isPreloaderComplete }) {
         return (price - price * discount).toFixed(2);
     }
 
-    useEffect(() => {
-        gsap.set("#ball", { xPercent: -50, yPercent: -50 });
+    // useEffect(() => {
+    //     gsap.set("#ball", { xPercent: -50, yPercent: -50 });
 
-        let xTo = gsap.quickTo("#ball", "x", { duration: 0, ease: "power3" }),
-            yTo = gsap.quickTo("#ball", "y", { duration: 0, ease: "power3" });
+    //     let xTo = gsap.quickTo("#ball", "x", { duration: 0, ease: "power3" }),
+    //         yTo = gsap.quickTo("#ball", "y", { duration: 0, ease: "power3" });
 
-        window.addEventListener("mousemove", e => {
-            // xTo(e.pageX);
-            // yTo(e.pageY);
-            xTo(e.clientX);
-            yTo(e.clientY);
-        });
-    }, []);
+    //     window.addEventListener("mousemove", e => {
+    //         xTo(e.pageX);
+    //         yTo(e.pageY);
+    //         xTo(e.clientX);
+    //         yTo(e.clientY);
+    //     });
+    // }, []);
 
     useEffect(() => {
         if (isPreloaderComplete) {
@@ -87,7 +87,7 @@ export default function Hero({ isPreloaderComplete }) {
 
     return (
         <>
-            <div className={styles.ball} id="ball"></div>
+            {/* <div className={styles.ball} id="ball"></div> */}
             <div className={styles.container}>
                 <div className={styles.hero}>
                     <img src="/assets/images/furniture.jpg" alt="Images" />
